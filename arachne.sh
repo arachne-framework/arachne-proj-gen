@@ -43,24 +43,25 @@ rename() {
    local from_alt=${from//-/_}
    local to_alt=${to//-/_}
 
-   echo "renaming from $from to $to"
-   echo "renaming from $from_alt to $to_alt"
-
    for f in `find . | grep $from | sort -r `; do
-       local dest=`echo $f | sed s/$from/$to/`
+       local dest=`echo $f | sed s:$from:$to:`
        mkdir -p `dirname $dest`
        mv $f $dest
    done
 
    for f in `find . | grep $from_alt | sort -r `; do
-       local dest=`echo $f | sed s/$from_alt/$to_alt/`
+       local dest=`echo $f | sed s:$from_alt:$to_alt:`
        mkdir -p `dirname $dest`
        mv $f $dest
    done
 
+   for d in `find . -type d -empty | grep -v '\./\.git'`; do
+       rm -r $d
+   done
+
    for f in `find . -type f | grep -v '\./\.git'`; do
-       sed -i '' s/$from/$to/g $f
-       sed -i '' s/$from_alt/$to_alt/g $f
+       sed -i '' s:$from:$to:g $f
+       sed -i '' s:$from_alt:$to_alt:g $f
    done
 
 }
