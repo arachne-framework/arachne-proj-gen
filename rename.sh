@@ -3,7 +3,7 @@
 NAME=$1
 ALT_NAME=${NAME//-/_}
 
-PATTERN=module-template
+PATTERN=biz-buz
 ALT_PATTERN=${PATTERN//-/_}
 
 #echo $PATTERN
