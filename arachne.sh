@@ -110,6 +110,7 @@ new() {
     fi
 
     local working=`pwd`
+    cd $to_name #|| {echo "could not cd to $to_name directory"; exit 1;}
     rename_project $from_ns $from_name $to_ns $to_name
     cd $working
 }
