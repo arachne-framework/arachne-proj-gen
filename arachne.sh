@@ -75,10 +75,8 @@ rename_project(){
     local to_ns=$3
     local to_name=$4
 
-    rename $from_ns $to_ns
-
-    # todo properly escape this so it actually works, and build an example so we can test
     rename ${from_ns//\./\/} ${to_ns//\./\/}
+    rename $from_ns $to_ns
 
     rename $from_name $to_name
 }
