@@ -11,7 +11,10 @@ Supported operations:
 new <name> <template>
 
     Create a new Arachne project with the given name, based on the provided template.
-    The template should be the clonable URI of a git repository.
+
+    The name must be a fully-qualified project name (e.g, 'com.company/my-proj').
+
+    The template should be the clonable URI of a git repository to use as a template.
 
 update
 
@@ -72,7 +75,7 @@ rename_project(){
     local to_ns=$3
     local to_name=$4
 
-    rename $to_ns $to_ns
+    rename $from_ns $to_ns
 
     # todo properly escape this so it actually works, and build an example so we can test
     rename ${from_ns//\./\/} ${to_ns//\./\/}
@@ -98,7 +101,7 @@ new() {
     git clone $repo $to_name
     rm -rf $to_name/.git
 
-    local oldname=`cat $to_name/.project-name`
+    local oldname=`cat $to_name/.template-name`
 
     if [[ $oldname =~ $name_re ]]; then
         local from_ns="${BASH_REMATCH[1]}"
