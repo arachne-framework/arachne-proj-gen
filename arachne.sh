@@ -63,8 +63,8 @@ rename() {
    done
 
    for f in `find . -type f | grep -v '\./\.git'`; do
-       sed -i '' s:$from:$to:g $f
-       sed -i '' s:$from_alt:$to_alt:g $f
+       sed -i -e "s:$from:$to:g" $f
+       sed -i -e "s:$from_alt:$to_alt:g" $f
    done
 
 }
