@@ -2,6 +2,8 @@
 
 VERSION=0.1.0
 
+LANG=C # Help SED work on binary files
+
 usage(){
     cat <<EOF
 Usage: <operation> <arguments>
