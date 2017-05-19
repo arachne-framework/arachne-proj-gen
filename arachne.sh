@@ -93,7 +93,7 @@ new() {
         local to_ns="${BASH_REMATCH[1]}"
         local to_name="${BASH_REMATCH[2]}"
     else
-        echo "The name that was provide ($fqn) was not a fully qualified name"
+        echo "The name that was provided ($fqn) was not a fully qualified name"
         exit 1
     fi
 
