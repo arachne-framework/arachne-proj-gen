@@ -63,9 +63,12 @@ rename() {
    done
 
    for f in `find . -type f | grep -v '\./\.git'`; do
-       sed -i.bak -e "s:$from:$to:g" $f
-       sed -i.bak -e "s:$from_alt:$to_alt:g" $f
-       rm $f.bak
+       charset=`file -b --mime $f | cut -d ' ' -f 2 | cut -d = -f 2`
+       if [ "$charset" != "binary" ]; then
+           sed -i.bak -e "s:$from:$to:g" $f
+           sed -i.bak -e "s:$from_alt:$to_alt:g" $f
+           rm $f.bak
+       fi
    done
 
 }
